@@ -21,10 +21,12 @@
     <%= f.text_field :ico %>
   </div>
 
-  <div class="field">
-    <%= f.label :tenant_id %>
-    <%= f.select :tenant_id, current_user.tenants.collect { |t| [t.title, t.id] }, include_blank: true %>
-  </div>
+  <% if Tenant.current_ids.count > 1 %>
+    <div class="field">
+      <%= f.label :tenant_id %>
+      <%= f.select :tenant_id, current_user.tenants.collect { |t| [t.title, t.id] }, include_blank: true %>
+    </div>
+  <% end %>
 
   <div class="actions">
     <%= f.submit %>
